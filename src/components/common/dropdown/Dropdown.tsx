@@ -3,6 +3,7 @@ import {StyleSheet, View} from 'react-native';
 import RNPickerSelect from 'react-native-picker-select';
 import colors from '../../../utils/colors';
 import {sizes} from '../../../utils/sizings';
+import { verifyModelIphone } from '../../../utils/validation';
 
 interface DropdownProps {
   onChange: (value: string, index: number) => void;
@@ -16,6 +17,8 @@ interface DropdownItemProps {
 }
 
 const DropdownCommon = ({onChange, items, placeHolder}: DropdownProps) => {
+  const isIOS = verifyModelIphone();
+
   return (
     <RNPickerSelect
       onValueChange={onChange}
@@ -24,6 +27,8 @@ const DropdownCommon = ({onChange, items, placeHolder}: DropdownProps) => {
       style={pickerSelectStyles}
       Icon={() => {
         return (
+          isIOS 
+          ? 
           <View
             // eslint-disable-next-line react-native/no-inline-styles
             style={{
@@ -40,6 +45,8 @@ const DropdownCommon = ({onChange, items, placeHolder}: DropdownProps) => {
               right: sizes.size_10,
             }}
           />
+          :
+          null
         );
       }}
     />
