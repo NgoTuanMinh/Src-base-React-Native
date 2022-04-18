@@ -3,6 +3,7 @@ import {StyleSheet, Text, View} from 'react-native';
 import DropdownCommon from '../common/dropdown/Dropdown';
 import InputText from '../common/inputText/InputText';
 import SliderCustom from '../common/slider/Slider';
+import Token from '../common/token/Token';
 
 // interface IProps {
 
@@ -27,7 +28,8 @@ const HomeComponent = () => {
           placeHolder={{label: 'Select....', value: null}}
         /> */}
         {/* <InputText onChange={onChange} value={text} label="First name" /> */}
-        <SliderCustom value={text} onChange={onChange} />
+        {/* <SliderCustom value={text} onChange={onChange} /> */}
+        <Token value="Active" isActive={false} />
       </View>
       <Text>Home</Text>
     </View>
