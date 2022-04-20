@@ -4,10 +4,12 @@ import ScreenName from '../utils/screenName';
 import colors from '../utils/colors';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 import BottomTabBar from '../components/common/bottomTabBar/BottomTabBar';
-import {HomeScreen} from '../screens';
+import {ExploreScreen, HomeScreen, ProfileScreen} from '../screens';
 
 const Stack = createStackNavigator();
 const Home = createStackNavigator();
+const Explore = createStackNavigator();
+const Profile = createStackNavigator();
 const BottomTab = createBottomTabNavigator();
 
 export const RootStack = () => {
@@ -36,6 +38,32 @@ const HomeStack = () => {
   );
 };
 
+const ExploreStack = () => {
+  return (
+    <Explore.Navigator
+      screenOptions={{cardStyle: {backgroundColor: colors.white}}}>
+      <Explore.Screen
+        name={ScreenName.EXPLORE_SCREEN}
+        component={ExploreScreen}
+        options={{headerShown: false}}
+      />
+    </Explore.Navigator>
+  );
+};
+
+const ProfileStack = () => {
+  return (
+    <Profile.Navigator
+      screenOptions={{cardStyle: {backgroundColor: colors.white}}}>
+      <Profile.Screen
+        name={ScreenName.PROFILE_SCREEN}
+        component={ProfileScreen}
+        options={{headerShown: false}}
+      />
+    </Profile.Navigator>
+  );
+};
+
 const BottomStack = () => {
   return (
     <BottomTab.Navigator tabBar={(props: any) => <BottomTabBar {...props} />}>
@@ -46,12 +74,12 @@ const BottomStack = () => {
       />
       <BottomTab.Screen
         name={ScreenName.EXPLORE_STACK}
-        component={HomeStack}
+        component={ExploreStack}
         options={{headerShown: false}}
       />
       <BottomTab.Screen
         name={ScreenName.PROFILE_STACK}
-        component={HomeStack}
+        component={ProfileStack}
         options={{headerShown: false}}
       />
     </BottomTab.Navigator>
