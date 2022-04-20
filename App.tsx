@@ -12,7 +12,7 @@ import React from 'react';
 import AppNavigator from './src/navigation';
 import {Provider as PaperProvider} from 'react-native-paper';
 import {Provider as StoreProvider} from 'react-redux';
-import store from './src/store';
+import {store} from './src/store';
 
 const App = () => {
   return (
