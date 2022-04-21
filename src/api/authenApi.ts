@@ -1,12 +1,12 @@
-import { LoginInput, LoginOutput } from "../store/types/authentication.types";
-import axiosClient from "./axiosClient";
+import {LoginInput, LoginOutput} from '../types/authentication';
+import axiosClient from './axiosClient';
 
 const prefixUrl = '/authentication';
+const authenticationApi = {
+  login(input: LoginInput): Promise<LoginOutput> {
+    const url = prefixUrl + '/login';
+    return axiosClient.post(url, input);
+  },
+};
 
-const authenApi = {
-	login(input: LoginInput): Promise<LoginOutput> {
-		return axiosClient.post(prefixUrl + '/login', input);
-	}
-}
-
-export default authenApi;
+export default authenticationApi;

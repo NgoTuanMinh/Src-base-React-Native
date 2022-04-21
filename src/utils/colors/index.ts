@@ -1,7 +1,7 @@
 const colors = {
   gray: 'gray',
   white: 'white',
-  black: 'black',
+  black: '#111111',
   red: 'red',
   silver: '#C5C5C5',
   primaryBlue: '#2A73D6',
@@ -10,6 +10,7 @@ const colors = {
   darkBlue: '#374B73',
   pink: '#FF9A9A',
   lightGray: '#F9F9F9',
+  mediumGray: '#F0F0F0',
   apricot: '#FFD0A5',
   lightPink: '#FFE3E3',
   offWhite: '#FFF1ED',
