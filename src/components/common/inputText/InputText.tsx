@@ -4,22 +4,25 @@ import {TextInput} from 'react-native-paper';
 import {sizes} from '../../../utils/sizings';
 
 interface InputTextProps {
-  onChange?: (e: any) => void;
-  value?: string;
-  label?: string;
+  onChange: (value: string, name?: string) => void;
+  value: string;
+  label: string;
+  name?: string;
+  type?: string;
 }
 
-const InputText = ({onChange, value, label}: InputTextProps) => {
+const InputText = ({onChange, value='', label, name, type='text'}: InputTextProps) => {
   return (
     <View style={styles.wrapInput}>
       <TextInput
         style={styles.input}
         label={label}
-        onChangeText={onChange}
+        onChangeText={(textValue: string) => onChange(textValue, name)}
         value={value}
         mode="outlined"
         blurOnSubmit={true}
         onSubmitEditing={Keyboard.dismiss}
+        secureTextEntry={type === 'password'}
       />
     </View>
   );

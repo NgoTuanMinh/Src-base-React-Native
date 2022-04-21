@@ -1,22 +1,15 @@
 import createSagaMiddleware from '@redux-saga/core';
 import {
-  Action,
-  combineReducers,
-  configureStore,
-  getDefaultMiddleware,
-  ThunkAction,
+  Action, configureStore, ThunkAction
 } from '@reduxjs/toolkit';
-import authReducer from './reducers/authReducer';
+import rootReducer from './reducers';
 import rootSaga from './sagas/rootSaga';
 
 const sagaMiddleware = createSagaMiddleware();
-const middleware = (getDefaultMiddleware: (option: any) => string | any[]) => [...getDefaultMiddleware({thunk: false}), sagaMiddleware];
+const middleware = (getDefaultMiddleware: (option: any) => string | any[]) => [...getDefaultMiddleware({thunk: false, serializableCheck: false}), sagaMiddleware];
 
 // const middleware = [...getDefaultMiddleware({thunk: false}), sagaMiddleware];
 
-const rootReducer = combineReducers({
-  authentication: authReducer,
-});
 
 export const store = configureStore({
   reducer: rootReducer,

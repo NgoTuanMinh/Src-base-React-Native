@@ -11,10 +11,11 @@ function* handleLogin(action: PayloadAction<LoginInput>) {
       authenticationApi.login,
       action.payload,
     );
+    console.log('response=====', response);
     saveAccessToken(response?.accessToken);
     saveRefreshToken(response?.refreshToken);
     yield put(authActions.loginSuccess(response));
-  } catch (error) {
+  } catch (error: any) {
     yield put(authActions.loginFailed());
   }
 }

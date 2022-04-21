@@ -5,6 +5,8 @@ import colors from '../utils/colors';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 import BottomTabBar from '../components/common/bottomTabBar/BottomTabBar';
 import {ExploreScreen, HomeScreen, ProfileScreen} from '../screens';
+import DialogCommon from '../components/common/dialog/Dialog';
+import Header from '../components/layout/Header';
 
 const Stack = createStackNavigator();
 const Home = createStackNavigator();
@@ -14,13 +16,17 @@ const BottomTab = createBottomTabNavigator();
 
 export const RootStack = () => {
   return (
-    <Stack.Navigator>
-      <Stack.Screen
-        name={ScreenName.BOTTOM_STACK}
-        component={BottomStack}
-        options={{headerShown: false}}
-      />
-    </Stack.Navigator>
+    <>
+      <Header />
+      <Stack.Navigator>
+        <Stack.Screen
+          name={ScreenName.BOTTOM_STACK}
+          component={BottomStack}
+          options={{headerShown: false}}
+        />
+      </Stack.Navigator>
+      <DialogCommon />
+    </>
   );
 };
 

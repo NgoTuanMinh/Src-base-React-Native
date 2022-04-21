@@ -18,10 +18,10 @@ interface ButtonProps {
   buttonStyles?: StyleProp<ViewStyle>;
 }
 
-const CommonButton = ({
+const ButtonCommon = ({
   title,
   onPress,
-  primary,
+  primary = true,
   buttonStyles,
   ...props
 }: ButtonProps) => {
@@ -84,4 +84,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default CommonButton;
+export default ButtonCommon;

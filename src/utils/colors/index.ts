@@ -1,6 +1,6 @@
 const colors = {
   gray: 'gray',
-  white: 'white',
+  white: '#ffffff',
   black: '#111111',
   red: 'red',
   silver: '#C5C5C5',
@@ -20,6 +20,16 @@ const colors = {
   info: '#0000EB',
   warning: '#FF6711',
   alert: '#FE3F61',
+
+  // gray scale
+  grayTitleActive: '#222222',
+  grayBody: '#333333',
+  grayLabel: '#555555',
+  grayPlaceHolder: '#888888',
+  grayLine: '#CDCDCD',
+  grayInputBackground: '#F0F0F0',
+  grayBackground: '#F8F8F8',
+  grayOffWhite: '#FCFCFC',
 
   transparent: 'transparent',
 

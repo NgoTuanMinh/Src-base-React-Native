@@ -1,37 +1,22 @@
-import React, {useState} from 'react';
-import {StyleSheet, Text, View} from 'react-native';
-import DropdownCommon from '../common/dropdown/Dropdown';
+import React, { useState } from 'react';
+import { StyleSheet, View } from 'react-native';
+import { useDispatch } from 'react-redux';
+import { authActions } from '../../store/reducers/authReducer';
+import { sizes } from '../../utils/sizings';
+import ButtonCommon from '../common/buttons/commonButton/CommonButton';
 import InputText from '../common/inputText/InputText';
-import SliderCustom from '../common/slider/Slider';
-import Token from '../common/token/Token';
+import Banner from '../layout/Banner';
+import RecommendAuction from './RecommendAuction';
 
 // interface IProps {
 
 // }
 
 const HomeComponent = () => {
-  const [text, setText] = useState<number>(0);
-  const onChange = (value: any) => {
-    console.log('value', value);
-    setText(value);
-  };
+
   return (
     <View style={styles.container}>
-      <View style={{width: '100%', padding: 24}}>
-        {/* <DropdownCommon
-          onChange={onChange}
-          items={[
-            {label: 'Football', value: 'football'},
-            {label: 'Baseball', value: 'baseball'},
-            {label: 'Hockey', value: 'hockey'},
-          ]}
-          placeHolder={{label: 'Select....', value: null}}
-        /> */}
-        {/* <InputText onChange={onChange} value={text} label="First name" /> */}
-        {/* <SliderCustom value={text} onChange={onChange} /> */}
-        <Token value="Active" isActive={false} />
-      </View>
-      <Text>Home</Text>
+      <Banner />
     </View>
   );
 };
