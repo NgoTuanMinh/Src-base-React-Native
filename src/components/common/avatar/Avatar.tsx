@@ -1,8 +1,8 @@
 import React from 'react';
-import { Image, StyleSheet, Text, View } from 'react-native';
+import {Image, StyleSheet, Text, View} from 'react-native';
 import LinearGradient from 'react-native-linear-gradient';
 import colors from '../../../utils/colors';
-import { fontWeights, sizes } from '../../../utils/sizings';
+import {fontWeights, sizes} from '../../../utils/sizings';
 
 interface AvatarProps {
   urlAvatar?: string;
@@ -19,7 +19,7 @@ const Avatar = ({urlAvatar, isOnline, name, height}: AvatarProps) => {
       position: 'relative',
     },
     avatar: {
-      resizeMode: 'contain',
+      resizeMode: 'cover',
       width: height,
       height: height,
       borderRadius: height && height / 2,

@@ -67,7 +67,7 @@ export default function BottomTabBar({state, descriptors, navigation}: any) {
             style={[
               isFocused ? styles.tabButtonFocused : styles.tabButton,
               // eslint-disable-next-line react-native/no-inline-styles
-              {marginBottom: isNavigationBar ? sizes.size_24 : 0},
+              {marginBottom: isNavigationBar ? sizes.size_20 : 0},
             ]}>
             <Image
               style={[styles.tabIcon, isFocused ? styles.tabIconFocused : null]}
@@ -90,7 +90,7 @@ const styles = StyleSheet.create({
   containerStyle: {
     flexDirection: 'row',
     backgroundColor: Colors.white,
-    height: sizes.size_56,
+    height: sizes.size_60,
     justifyContent: 'center',
   },
   tabButton: {
@@ -98,7 +98,7 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
     flex: 1,
-    height: '100%',
+    height: sizes.size_56,
     alignSelf: 'flex-end',
   },
   tabButtonFocused: {
@@ -106,9 +106,9 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
     flex: 1,
-    height: '100%',
+    height: sizes.size_56,
     alignSelf: 'flex-end',
-    borderBottomWidth: sizes.size_2,
+    borderBottomWidth: sizes.size_1,
     borderColor: colors.accentColor,
   },
   tabIcon: {
@@ -118,6 +118,7 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
+    marginTop: sizes.size_12,
   },
   tabIconFocused: {
     tintColor: colors.accentColor,

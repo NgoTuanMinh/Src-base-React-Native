@@ -5,31 +5,27 @@ import colors from '../../utils/colors';
 import images from '../../utils/images';
 import {fontWeights, sizes} from '../../utils/sizings';
 import Avatar from '../common/avatar/Avatar';
-import ButtonCommon from '../common/buttons/commonButton/CommonButton';
 
 interface IProps {
   imageUrl: string;
   nameProduct: string;
   nameCreator: string;
   avatarUrlCreator: string;
-  placeABid: () => void;
-  viewArtWork: () => void;
+  viewAuction: () => void;
   likeAuction: () => void;
-  liked?: boolean;
-  reservePrice?: number;
-  isOnline?: boolean;
+  liked: boolean;
+  currentBid: number;
+  isOnline: boolean;
 }
 
-const RecommendAuction = ({
+const LiveAuction = ({
   imageUrl,
   nameCreator,
   nameProduct,
   avatarUrlCreator,
   liked = false,
-  reservePrice,
-  placeABid,
-  // likeAuction,
-  viewArtWork,
+  currentBid,
+  viewAuction,
   isOnline = false,
 }: IProps) => {
   return (
@@ -63,18 +59,17 @@ const RecommendAuction = ({
         </View>
       </View>
 
-      <View style={styles.wrapReservePrice}>
-        <Text style={styles.reservePriceTitle}>Reserve Price </Text>
-        <Text style={styles.reserverPrice}> {reservePrice} ETH</Text>
+      <View style={styles.wrapInfoAuction}>
+        <View style={styles.leftInfoAuction}>
+          {true && <View style={styles.onlineStatus} />}
+          <Text style={styles.leftInfoAuctionText}>Current Bid</Text>
+          <Text style={styles.leftInfoAuctionPrice}>{currentBid} ETH</Text>
+        </View>
+        <View>
+          <Text style={styles.leftInfoAuctionText}>Ending in</Text>
+          <Text style={styles.leftInfoAuctionPrice}>27m 30s</Text>
+        </View>
       </View>
-
-      <ButtonCommon title="Place a bid" onPress={placeABid} />
-      <View style={{marginBottom: sizes.size_12}} />
-      <ButtonCommon
-        title="View art work"
-        onPress={viewArtWork}
-        primary={false}
-      />
     </View>
   );
 };
@@ -91,6 +86,7 @@ const styles = StyleSheet.create({
     overflow: 'hidden',
     backgroundColor: colors.white,
     padding: sizes.size_16,
+    marginBottom: sizes.size_16,
   },
   wrapInfo: {
     borderRadius: sizes.size_32,
@@ -158,6 +154,42 @@ const styles = StyleSheet.create({
     fontWeight: fontWeights.fontWeight_700,
     color: colors.grayTitleActive,
   },
+  wrapInfoAuction: {
+    backgroundColor: colors.white,
+    borderColor: colors.grayBody,
+    borderRadius: sizes.size_50,
+    borderWidth: sizes.size_1,
+    width: '96%',
+    paddingVertical: sizes.size_12,
+    marginHorizontal: sizes.size_4,
+    flexDirection: 'row',
+    justifyContent: 'space-evenly',
+  },
+  leftInfoAuction: {
+    position: 'relative',
+  },
+  leftInfoAuctionText: {
+    fontSize: sizes.size_16,
+    fontWeight: fontWeights.fontWeight_400,
+    color: colors.grayLabel,
+  },
+  leftInfoAuctionPrice: {
+    fontSize: sizes.size_20,
+    fontWeight: fontWeights.fontWeight_700,
+    lineHeight: sizes.size_28,
+    color: colors.grayTitleActive,
+  },
+  onlineStatus: {
+    backgroundColor: colors.success,
+    width: sizes.size_10,
+    height: sizes.size_10,
+    borderRadius: sizes.size_5,
+    position: 'absolute',
+    top: sizes.size_4,
+    left: -sizes.size_12,
+    borderWidth: sizes.size_2,
+    borderColor: colors.white,
+  },
 });
 
-export default RecommendAuction;
+export default LiveAuction;
