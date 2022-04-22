@@ -33,7 +33,7 @@ const Avatar = ({urlAvatar, isOnline, name, height}: AvatarProps) => {
     avatarText: {
       color: colors.white,
       lineHeight: height,
-      fontSize: height && height - 20,
+      fontSize: height && height / 1.2,
       fontWeight: fontWeights.fontWeight_700,
     },
     onlineStatus: {

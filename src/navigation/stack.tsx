@@ -4,9 +4,10 @@ import ScreenName from '../utils/screenName';
 import colors from '../utils/colors';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 import BottomTabBar from '../components/common/bottomTabBar/BottomTabBar';
-import {ExploreScreen, HomeScreen, ProfileScreen} from '../screens';
+import {DetailSoldScreen, ExploreScreen, HomeScreen, ProfileScreen} from '../screens';
 import DialogCommon from '../components/common/dialog/Dialog';
 import Header from '../components/layout/Header';
+import Footer from '../components/layout/Footer';
 
 const Stack = createStackNavigator();
 const Home = createStackNavigator();
@@ -37,6 +38,11 @@ const HomeStack = () => {
       <Home.Screen
         name={ScreenName.HOME_SCREEN}
         component={HomeScreen}
+        options={{headerShown: false}}
+      />
+      <Home.Screen
+        name={ScreenName.DETAIL_SOLD_SCREEN}
+        component={DetailSoldScreen}
         options={{headerShown: false}}
       />
       {/* <Home.Screen name={ScreenName.HOME_SCREEN} component={HomeScreen} options={{header: ({ navigation }) => <Header title="Home" isBackButton={false} navigation={navigation} />}} /> */}
@@ -72,22 +78,24 @@ const ProfileStack = () => {
 
 const BottomStack = () => {
   return (
-    <BottomTab.Navigator tabBar={(props: any) => <BottomTabBar {...props} />}>
-      <BottomTab.Screen
-        name={ScreenName.HOME_STACK}
-        component={HomeStack}
-        options={{headerShown: false}}
-      />
-      <BottomTab.Screen
-        name={ScreenName.EXPLORE_STACK}
-        component={ExploreStack}
-        options={{headerShown: false}}
-      />
-      <BottomTab.Screen
-        name={ScreenName.PROFILE_STACK}
-        component={ProfileStack}
-        options={{headerShown: false}}
-      />
-    </BottomTab.Navigator>
+    <>
+      <BottomTab.Navigator tabBar={(props: any) => <BottomTabBar {...props} />}>
+        <BottomTab.Screen
+          name={ScreenName.HOME_STACK}
+          component={HomeStack}
+          options={{headerShown: false}}
+        />
+        <BottomTab.Screen
+          name={ScreenName.EXPLORE_STACK}
+          component={ExploreStack}
+          options={{headerShown: false}}
+        />
+        <BottomTab.Screen
+          name={ScreenName.PROFILE_STACK}
+          component={ProfileStack}
+          options={{headerShown: false}}
+        />
+      </BottomTab.Navigator>
+    </>
   );
 };

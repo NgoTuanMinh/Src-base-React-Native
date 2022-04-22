@@ -1,6 +1,7 @@
 import React from 'react';
-import {Image, StyleSheet, View} from 'react-native';
+import {Image, StyleSheet, TouchableOpacity, View} from 'react-native';
 import {Text} from 'react-native-paper';
+import { useCountdown } from '../../hooks/countdown';
 import colors from '../../utils/colors';
 import images from '../../utils/images';
 import {fontWeights, sizes} from '../../utils/sizings';
@@ -16,6 +17,7 @@ interface IProps {
   liked: boolean;
   currentBid: number;
   isOnline: boolean;
+  timeEnd: Date | string;
 }
 
 const LiveAuction = ({
@@ -27,13 +29,21 @@ const LiveAuction = ({
   currentBid,
   viewAuction,
   isOnline = false,
+  timeEnd
 }: IProps) => {
+
+  const [days, hours, minutes, seconds] = useCountdown(timeEnd);
+
+  const isSold = days < 0 && hours < 0 && minutes < 0 && seconds < 0;
+  
   return (
     <View style={styles.container}>
       <View style={styles.wrapper}>
         <View style={styles.wrapInfo}>
           <View style={styles.wrapImage}>
-            <Image source={{uri: imageUrl}} style={styles.image} />
+            <TouchableOpacity onPress={viewAuction}>
+              <Image source={{uri: imageUrl}} style={styles.image} />
+            </TouchableOpacity>
           </View>
 
           <Text style={styles.nameProduct}>{nameProduct}</Text>
@@ -58,18 +68,32 @@ const LiveAuction = ({
           </View>
         </View>
       </View>
-
-      <View style={styles.wrapInfoAuction}>
-        <View style={styles.leftInfoAuction}>
-          {true && <View style={styles.onlineStatus} />}
-          <Text style={styles.leftInfoAuctionText}>Current Bid</Text>
-          <Text style={styles.leftInfoAuctionPrice}>{currentBid} ETH</Text>
+      <TouchableOpacity onPress={viewAuction}>
+        <View style={[styles.wrapInfoAuction, !isSold && styles.wrapInfoAuctionNotSold]}>
+          {!isSold 
+          &&
+          <>
+            <View style={styles.leftInfoAuction}>
+              {true && <View style={styles.onlineStatus} />}
+              <Text style={styles.leftInfoAuctionText}>Current Bid</Text>
+              <Text style={styles.leftInfoAuctionPrice}>{currentBid} ETH</Text>
+            </View>
+            <View>
+              <Text style={styles.leftInfoAuctionText}>Ending in</Text>
+              <Text style={styles.leftInfoAuctionPrice}>
+                {days > 0 && `${days < 10 ? `0${days}`: days}d `}
+                {hours > 0 && `${hours < 10 ? `0${hours}` : hours}h `}
+                {(minutes || minutes === 0) && `${minutes < 10 ? `0${minutes}` : minutes}m `}
+                {(seconds || seconds === 0) && `${seconds < 10 ? `0${seconds}` : seconds}s`}
+              </Text>
+            </View>
+          </>}
+          {isSold && <View style={styles.wrapSold}>
+            <Text style={styles.soldForTitle}>Sold for </Text>
+            <Text style={styles.soldForPrice}>{currentBid} ETH</Text>
+          </View>}
         </View>
-        <View>
-          <Text style={styles.leftInfoAuctionText}>Ending in</Text>
-          <Text style={styles.leftInfoAuctionPrice}>27m 30s</Text>
-        </View>
-      </View>
+      </TouchableOpacity>
     </View>
   );
 };
@@ -158,12 +182,14 @@ const styles = StyleSheet.create({
     backgroundColor: colors.white,
     borderColor: colors.grayBody,
     borderRadius: sizes.size_50,
-    borderWidth: sizes.size_1,
     width: '96%',
     paddingVertical: sizes.size_12,
     marginHorizontal: sizes.size_4,
     flexDirection: 'row',
     justifyContent: 'space-evenly',
+  },
+  wrapInfoAuctionNotSold: {
+    borderWidth: 1,
   },
   leftInfoAuction: {
     position: 'relative',
@@ -185,11 +211,28 @@ const styles = StyleSheet.create({
     height: sizes.size_10,
     borderRadius: sizes.size_5,
     position: 'absolute',
-    top: sizes.size_4,
+    top: sizes.size_7,
     left: -sizes.size_12,
     borderWidth: sizes.size_2,
     borderColor: colors.white,
   },
+  wrapSold: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  soldForTitle: {
+    fontSize: sizes.size_20,
+    lineHeight: sizes.size_28,
+    color: colors.grayLabel,
+    fontWeight: fontWeights.fontWeight_400,
+  },
+  soldForPrice: {
+    fontSize: sizes.size_24,
+    lineHeight: sizes.size_32,
+    color: colors.grayLabel,
+    fontWeight: fontWeights.fontWeight_700,
+  }
 });
 
 export default LiveAuction;

@@ -90,7 +90,7 @@ const styles = StyleSheet.create({
   containerStyle: {
     flexDirection: 'row',
     backgroundColor: Colors.white,
-    height: sizes.size_60,
+    height: sizes.size_56,
     justifyContent: 'center',
   },
   tabButton: {

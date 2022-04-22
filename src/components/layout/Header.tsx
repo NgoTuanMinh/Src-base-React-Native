@@ -18,7 +18,7 @@ const styles = StyleSheet.create({
   wrapHeader: {
     padding: sizes.size_16,
     paddingBottom: 0,
-    backgroundColor: colors.grayOffWhite,
+    backgroundColor: colors.grayBackground,
   },
   wrapInIos: {
     paddingTop: sizes.size_48,

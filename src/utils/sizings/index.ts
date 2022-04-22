@@ -135,8 +135,11 @@ export const sizes = {
   size_190: size(190),
   size_200: size(200),
   size_210: size(210),
+  size_250: size(250),
+  size_300: size(300),
   size_320: size(320),
   size_325: size(325),
+  size_360: size(360),
   size_375: size(375),
   size_400: size(400),
 };

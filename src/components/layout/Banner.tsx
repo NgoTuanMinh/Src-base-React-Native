@@ -16,7 +16,7 @@ const styles = StyleSheet.create({
   wrapBanner: {
 		padding: sizes.size_16,
     // paddingBottom: 0,
-		backgroundColor: colors.grayOffWhite,
+		backgroundColor: colors.grayBackground,
     justifyContent: 'center',
     alignItems: 'center',
 	},
