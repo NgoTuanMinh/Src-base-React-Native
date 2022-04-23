@@ -1,7 +1,7 @@
 import * as React from 'react';
-import {Keyboard, StyleSheet, View} from 'react-native';
-import {TextInput} from 'react-native-paper';
-import {sizes} from '../../../utils/sizings';
+import { Keyboard, StyleSheet, View } from 'react-native';
+import { TextInput } from 'react-native-paper';
+import { sizes } from '../../../utils/sizings';
 
 interface InputTextProps {
   onChange: (value: string, name?: string) => void;
@@ -9,9 +9,17 @@ interface InputTextProps {
   label: string;
   name?: string;
   type?: string;
+  placeHolder?: string;
 }
 
-const InputText = ({onChange, value='', label, name, type='text'}: InputTextProps) => {
+const InputText = ({
+  onChange,
+  value = '',
+  label,
+  name,
+  type = 'text',
+  placeHolder,
+}: InputTextProps) => {
   return (
     <View style={styles.wrapInput}>
       <TextInput
@@ -23,6 +31,9 @@ const InputText = ({onChange, value='', label, name, type='text'}: InputTextProp
         blurOnSubmit={true}
         onSubmitEditing={Keyboard.dismiss}
         secureTextEntry={type === 'password'}
+        keyboardType={type === 'number' ? 'numeric' : 'default'}
+        placeholder={placeHolder}
+        autoCapitalize="none"
       />
     </View>
   );

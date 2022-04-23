@@ -1,5 +1,5 @@
-import {createSlice, PayloadAction} from '@reduxjs/toolkit';
-import {LoginInput, LoginOutput} from '../../types/authentication';
+import { createSlice, PayloadAction } from '@reduxjs/toolkit';
+import { LoginInput, LoginOutput } from '../../types/authentication';
 
 export interface Session {
   accessToken: string;

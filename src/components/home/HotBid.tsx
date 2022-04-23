@@ -12,13 +12,7 @@ interface IProps {
   reservePrice: number;
 }
 
-const HotBid = ({
-  imageUrl,
-  nameProduct,
-  highestBid,
-  viewAuction,
-  reservePrice,
-}: IProps) => {
+const HotBid = ({imageUrl, nameProduct, highestBid, reservePrice}: IProps) => {
   return (
     <View style={styles.container}>
       <View style={styles.wrapImage}>
@@ -103,8 +97,7 @@ const styles = StyleSheet.create({
     fontSize: sizes.size_16,
     lineHeight: sizes.size_24,
     fontWeight: fontWeights.fontWeight_700,
-  }
-
+  },
 });
 
 export default HotBid;

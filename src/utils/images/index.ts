@@ -6,6 +6,12 @@ const images = {
   logoDescription: require('../../assets/images/logo-description.png'),
   logoFooter: require('../../assets/images/logo-footer.png'),
   iconHotBid: require('../../assets/images/IconHotBid.png'),
+  chartPie: require('../../assets/images/chart-pie.png'),
+  external: require('../../assets/images/external.png'),
+  iconStar: require('../../assets/images/icon-star.png'),
+  image1: require('../../assets/images/image-1.png'),
+  emojiStar: require('../../assets/images/emoji-star.png'),
+  nftImage: require('../../assets/images/nft-image.jpeg'),
   test: require('../../assets/images/test.jpg'),
 };
 

@@ -1,14 +1,14 @@
 import React from 'react';
-import {Image, StyleSheet, Text, TouchableOpacity, View} from 'react-native';
-import {Colors} from 'react-native/Libraries/NewAppScreen';
+import { Image, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
+import { Colors } from 'react-native/Libraries/NewAppScreen';
 import icons from '../../../utils/icons/icons';
 import I18n from '../../../utils/language/i18n';
 import screenName from '../../../utils/screenName';
-import {sizes} from '../../../utils/sizings';
-import {verifyModelIphone} from '../../../utils/validation';
+import { sizes } from '../../../utils/sizings';
+import { verifyModelIphone } from '../../../utils/validation';
 import colors from '../../../utils/colors';
 
-export default function BottomTabBar({state, descriptors, navigation}: any) {
+export default function BottomTabBar({ state, descriptors, navigation }: any) {
   const focusedOptions = descriptors[state.routes[state.index].key].options;
   const isNavigationBar = verifyModelIphone();
   if (focusedOptions.tabBarVisible === false) {
@@ -22,7 +22,7 @@ export default function BottomTabBar({state, descriptors, navigation}: any) {
         // paddingBottom: insets.bottom,
       }}>
       {state.routes.map((route: any, index: number) => {
-        const {options} = descriptors[route.key];
+        const { options } = descriptors[route.key];
         const isFocused = state.index === index;
         const getLinkImage = () => {
           if (route.name === screenName.HOME_STACK) {
@@ -31,6 +31,8 @@ export default function BottomTabBar({state, descriptors, navigation}: any) {
             return icons.profileIcon;
           } else if (route.name === screenName.EXPLORE_STACK) {
             return icons.exploreIcon;
+          } else if (route.name === screenName.UPLOAD_STACK) {
+            return icons.uploadIcon;
           }
         };
 
@@ -41,6 +43,8 @@ export default function BottomTabBar({state, descriptors, navigation}: any) {
             return I18n.t('TAB_PROFILE');
           } else if (route.name === screenName.EXPLORE_STACK) {
             return I18n.t('TAB_EXPLORE');
+          } else if (route.name === screenName.UPLOAD_STACK) {
+            return I18n.t('TAB_UPLOAD');
           }
         };
 
@@ -59,7 +63,7 @@ export default function BottomTabBar({state, descriptors, navigation}: any) {
           <TouchableOpacity
             key={index.toString()}
             accessibilityRole="button"
-            accessibilityState={{selected: isFocused}}
+            accessibilityState={{ selected: isFocused }}
             accessibilityLabel={options.tabBarAccessibilityLabel}
             testID={options.tabBarTestID}
             onPress={onPress}
@@ -67,7 +71,7 @@ export default function BottomTabBar({state, descriptors, navigation}: any) {
             style={[
               isFocused ? styles.tabButtonFocused : styles.tabButton,
               // eslint-disable-next-line react-native/no-inline-styles
-              {marginBottom: isNavigationBar ? sizes.size_20 : 0},
+              { marginBottom: isNavigationBar ? sizes.size_20 : 0 },
             ]}>
             <Image
               style={[styles.tabIcon, isFocused ? styles.tabIconFocused : null]}
@@ -75,7 +79,7 @@ export default function BottomTabBar({state, descriptors, navigation}: any) {
             />
             <Text
               style={[
-                {color: isFocused ? colors.accentColor : colors.darkBlue},
+                { color: isFocused ? colors.accentColor : colors.darkBlue },
               ]}>
               {getTabName()}
             </Text>

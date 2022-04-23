@@ -1,33 +1,58 @@
 import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import { Image, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 import colors from '../../utils/colors';
+import images from '../../utils/images';
 import { fontWeights, sizes } from '../../utils/sizings';
 
-const TagItem = ({type}: {type: string}) => {
-	return (
-		<View style={styles.wrapTag}>
-			<Text style={styles.contentTag}>#{type}</Text>
-		</View>
-	)
+interface IProps {
+  imageUrl: string | any;
+  title: string;
+  redirectTo: () => void;
 }
 
-const styles = StyleSheet.create({
-	wrapTag: {
-    alignSelf: 'flex-start',
-    paddingHorizontal: sizes.size_12,
-    paddingVertical: sizes.size_6,
-    borderColor: colors.grayLine,
-    borderWidth: sizes.size_1,
-    borderRadius: sizes.size_20,
-    marginRight: sizes.size_6,
-    marginBottom: sizes.size_8,
-  },
-  contentTag: {
-    color: colors.grayPlaceHolder,
-    fontSize: sizes.size_13,
-    fontWeight: fontWeights.fontWeight_500,
-    lineHeight: sizes.size_20,
-  }
-})
+const LinkItem = ({ imageUrl, title, redirectTo }: IProps) => {
+  return (
+    <View style={styles.wrapLink}>
+      <View style={styles.wrapImage}>
+        <Image source={imageUrl} style={styles.image} />
+      </View>
+      <Text style={styles.title}>{title}</Text>
+      <TouchableOpacity onPress={redirectTo} style={styles.wrapIconRedirect}>
+        <Image source={images.external} style={styles.iconRedirect} />
+      </TouchableOpacity>
+    </View>
+  );
+};
 
-export default TagItem;
+const styles = StyleSheet.create({
+  wrapLink: {
+    paddingHorizontal: sizes.size_16,
+    paddingVertical: sizes.size_16,
+    borderRadius: sizes.size_16,
+    marginBottom: sizes.size_16,
+    flexDirection: 'row',
+    backgroundColor: colors.white,
+  },
+  wrapImage: {},
+  image: {
+    width: sizes.size_30,
+    height: sizes.size_30,
+  },
+  title: {
+    marginLeft: sizes.size_32,
+    alignItems: 'center',
+    fontSize: sizes.size_16,
+    lineHeight: sizes.size_24,
+    fontWeight: fontWeights.fontWeight_700,
+    color: colors.grayTitleActive,
+  },
+  wrapIconRedirect: {
+    marginLeft: 'auto',
+  },
+  iconRedirect: {
+    width: sizes.size_24,
+    height: sizes.size_24,
+  },
+});
+
+export default LinkItem;

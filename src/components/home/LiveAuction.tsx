@@ -1,7 +1,7 @@
 import React from 'react';
 import {Image, StyleSheet, TouchableOpacity, View} from 'react-native';
 import {Text} from 'react-native-paper';
-import { useCountdown } from '../../hooks/countdown';
+import {useCountdown} from '../../hooks/countdown';
 import colors from '../../utils/colors';
 import images from '../../utils/images';
 import {fontWeights, sizes} from '../../utils/sizings';
@@ -29,13 +29,12 @@ const LiveAuction = ({
   currentBid,
   viewAuction,
   isOnline = false,
-  timeEnd
+  timeEnd,
 }: IProps) => {
-
   const [days, hours, minutes, seconds] = useCountdown(timeEnd);
 
   const isSold = days < 0 && hours < 0 && minutes < 0 && seconds < 0;
-  
+
   return (
     <View style={styles.container}>
       <View style={styles.wrapper}>
@@ -69,29 +68,39 @@ const LiveAuction = ({
         </View>
       </View>
       <TouchableOpacity onPress={viewAuction}>
-        <View style={[styles.wrapInfoAuction, !isSold && styles.wrapInfoAuctionNotSold]}>
-          {!isSold 
-          &&
-          <>
-            <View style={styles.leftInfoAuction}>
-              {true && <View style={styles.onlineStatus} />}
-              <Text style={styles.leftInfoAuctionText}>Current Bid</Text>
-              <Text style={styles.leftInfoAuctionPrice}>{currentBid} ETH</Text>
+        <View
+          style={[
+            styles.wrapInfoAuction,
+            !isSold && styles.wrapInfoAuctionNotSold,
+          ]}>
+          {!isSold && (
+            <>
+              <View style={styles.leftInfoAuction}>
+                {true && <View style={styles.onlineStatus} />}
+                <Text style={styles.leftInfoAuctionText}>Current Bid</Text>
+                <Text style={styles.leftInfoAuctionPrice}>
+                  {currentBid} ETH
+                </Text>
+              </View>
+              <View>
+                <Text style={styles.leftInfoAuctionText}>Ending in</Text>
+                <Text style={styles.leftInfoAuctionPrice}>
+                  {days > 0 && `${days < 10 ? `0${days}` : days}d `}
+                  {hours > 0 && `${hours < 10 ? `0${hours}` : hours}h `}
+                  {(minutes || minutes === 0) &&
+                    `${minutes < 10 ? `0${minutes}` : minutes}m `}
+                  {(seconds || seconds === 0) &&
+                    `${seconds < 10 ? `0${seconds}` : seconds}s`}
+                </Text>
+              </View>
+            </>
+          )}
+          {isSold && (
+            <View style={styles.wrapSold}>
+              <Text style={styles.soldForTitle}>Sold for </Text>
+              <Text style={styles.soldForPrice}>{currentBid} ETH</Text>
             </View>
-            <View>
-              <Text style={styles.leftInfoAuctionText}>Ending in</Text>
-              <Text style={styles.leftInfoAuctionPrice}>
-                {days > 0 && `${days < 10 ? `0${days}`: days}d `}
-                {hours > 0 && `${hours < 10 ? `0${hours}` : hours}h `}
-                {(minutes || minutes === 0) && `${minutes < 10 ? `0${minutes}` : minutes}m `}
-                {(seconds || seconds === 0) && `${seconds < 10 ? `0${seconds}` : seconds}s`}
-              </Text>
-            </View>
-          </>}
-          {isSold && <View style={styles.wrapSold}>
-            <Text style={styles.soldForTitle}>Sold for </Text>
-            <Text style={styles.soldForPrice}>{currentBid} ETH</Text>
-          </View>}
+          )}
         </View>
       </TouchableOpacity>
     </View>
@@ -232,7 +241,7 @@ const styles = StyleSheet.create({
     lineHeight: sizes.size_32,
     color: colors.grayLabel,
     fontWeight: fontWeights.fontWeight_700,
-  }
+  },
 });
 
 export default LiveAuction;

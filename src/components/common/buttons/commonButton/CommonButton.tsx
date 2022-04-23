@@ -8,7 +8,7 @@ import {
   ViewStyle,
 } from 'react-native';
 import colors from '../../../../utils/colors';
-import {fontWeights, sizes} from '../../../../utils/sizings';
+import { fontWeights, sizes } from '../../../../utils/sizings';
 import LinearGradient from 'react-native-linear-gradient';
 
 interface ButtonProps {
@@ -42,8 +42,8 @@ const ButtonCommon = ({
 
   return primary ? (
     <LinearGradient
-      start={{x: 0, y: 0}}
-      end={{x: 1, y: 0}}
+      start={{ x: 0, y: 0 }}
+      end={{ x: 1, y: 0 }}
       colors={['#0000EA', '#7708BE']}
       style={styles.wrapButton}>
       {mainButton}
@@ -75,12 +75,12 @@ const styles = StyleSheet.create({
   titlePrimary: {
     color: colors.white,
     fontSize: sizes.size_16,
-    fontWeight: fontWeights.fontWeight_600,
+    fontWeight: fontWeights.fontWeight_700,
   },
   titleSecondary: {
     color: colors.accentColor,
     fontSize: sizes.size_16,
-    fontWeight: fontWeights.fontWeight_600,
+    fontWeight: fontWeights.fontWeight_700,
   },
 });
 

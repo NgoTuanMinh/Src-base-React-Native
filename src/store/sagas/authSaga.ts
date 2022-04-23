@@ -1,9 +1,9 @@
-import {takeLatest, call, put} from '@redux-saga/core/effects';
-import {PayloadAction} from '@reduxjs/toolkit';
+import { takeLatest, call, put } from '@redux-saga/core/effects';
+import { PayloadAction } from '@reduxjs/toolkit';
 import authenticationApi from '../../api/authenApi';
-import {LoginInput, LoginOutput} from '../../types/authentication';
-import {saveAccessToken, saveRefreshToken} from '../../utils/storage';
-import {authActions} from '../reducers/authReducer';
+import { LoginInput, LoginOutput } from '../../types/authentication';
+import { saveAccessToken, saveRefreshToken } from '../../utils/storage';
+import { authActions } from '../reducers/authReducer';
 
 function* handleLogin(action: PayloadAction<LoginInput>) {
   try {
@@ -11,7 +11,6 @@ function* handleLogin(action: PayloadAction<LoginInput>) {
       authenticationApi.login,
       action.payload,
     );
-    console.log('response=====', response);
     saveAccessToken(response?.accessToken);
     saveRefreshToken(response?.refreshToken);
     yield put(authActions.loginSuccess(response));

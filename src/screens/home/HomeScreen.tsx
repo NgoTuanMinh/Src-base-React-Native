@@ -1,28 +1,27 @@
 import React from 'react';
-import {Image, StyleSheet, View} from 'react-native';
-import {ScrollView} from 'react-native-gesture-handler';
+import { Image, StyleSheet, View } from 'react-native';
+import { ScrollView } from 'react-native-gesture-handler';
 import { Text } from 'react-native-paper';
 import HotBid from '../../components/home/HotBid';
 import LiveAuction from '../../components/home/LiveAuction';
 import RecommendAuction from '../../components/home/RecommendAuction';
 import Banner from '../../components/layout/Banner';
 import Footer from '../../components/layout/Footer';
-import { useCountdown } from '../../hooks/countdown';
 import colors from '../../utils/colors';
 import images from '../../utils/images';
 import screenName from '../../utils/screenName';
-import {fontWeights, sizes} from '../../utils/sizings';
+import { fontWeights, sizes } from '../../utils/sizings';
 
-function HomeScreen({navigation}: any) {
+function HomeScreen({ navigation }: any) {
   const onPress = () => {
     console.log('123');
   };
 
-  const goToDetailSold = (id?: number) => {
-    navigation.navigate(screenName.DETAIL_SOLD_SCREEN);
-  }
-
-  const [days, hours, minutes, seconds] = useCountdown('2022-04-23T16:23:49.000Z');
+  const goToDetailSold = (id: number) => {
+    navigation.navigate(screenName.DETAIL_AUCTION_SCREEN, {
+      auctionId: id,
+    });
+  };
 
   return (
     <View style={styles.container}>
@@ -32,9 +31,7 @@ function HomeScreen({navigation}: any) {
         <Banner />
 
         <RecommendAuction
-          imageUrl={
-            'https://wallpaperaccess.com/full/7280.jpg'
-          }
+          imageUrl={'https://wallpaperaccess.com/full/7280.jpg'}
           avatarUrlCreator={
             'https://media.istockphoto.com/photos/mountain-landscape-picture-id517188688?k=20&m=517188688&s=612x612&w=0&h=i38qBm2P-6V4vZVEaMy_TaTEaoCMkYhvLCysE7yJQ5Q='
           }
@@ -48,15 +45,13 @@ function HomeScreen({navigation}: any) {
         />
 
         <View style={styles.wrapLiveAuctionTitle}>
-          <View style={styles.liveStatus}/>
+          <View style={styles.liveStatus} />
           <Text style={styles.liveAuctionTitle}>Live auctions</Text>
         </View>
 
         <LiveAuction
           timeEnd={'2022-04-23T16:23:49.000Z'}
-          imageUrl={
-            'https://wallpaperaccess.com/full/391239.jpg'
-          }
+          imageUrl={'https://wallpaperaccess.com/full/391239.jpg'}
           avatarUrlCreator={
             'https://media.istockphoto.com/photos/mountain-landscape-picture-id517188688?k=20&m=517188688&s=612x612&w=0&h=i38qBm2P-6V4vZVEaMy_TaTEaoCMkYhvLCysE7yJQ5Q='
           }
@@ -64,16 +59,14 @@ function HomeScreen({navigation}: any) {
           nameProduct="Silent Wave"
           liked={false}
           currentBid={1.5}
-          viewAuction={goToDetailSold}
+          viewAuction={() => goToDetailSold(1)}
           likeAuction={onPress}
           isOnline={true}
         />
 
         <LiveAuction
           timeEnd={'2022-04-22T08:33:26.677Z'}
-          imageUrl={
-            'https://wallpaperaccess.com/full/391240.jpg'
-          }
+          imageUrl={'https://wallpaperaccess.com/full/391240.jpg'}
           avatarUrlCreator={
             'https://media.istockphoto.com/photos/mountain-landscape-picture-id517188688?k=20&m=517188688&s=612x612&w=0&h=i38qBm2P-6V4vZVEaMy_TaTEaoCMkYhvLCysE7yJQ5Q='
           }
@@ -81,13 +74,13 @@ function HomeScreen({navigation}: any) {
           nameProduct="Silent Wave"
           liked={false}
           currentBid={1.5}
-          viewAuction={goToDetailSold}
+          viewAuction={() => goToDetailSold(2)}
           likeAuction={onPress}
           isOnline={true}
         />
-        
+
         <View style={styles.wrapHotBid}>
-          <Image source={images.iconHotBid} style={styles.iconHotBid}/>
+          <Image source={images.iconHotBid} style={styles.iconHotBid} />
           <Text style={styles.textHotBid}>Hot bid</Text>
         </View>
 
@@ -95,12 +88,9 @@ function HomeScreen({navigation}: any) {
           style={styles.listHotBid}
           horizontal={true}
           showsHorizontalScrollIndicator={false}
-          showsVerticalScrollIndicator={false}
-        >
+          showsVerticalScrollIndicator={false}>
           <HotBid
-            imageUrl={
-              'https://wallpaperaccess.com/full/391242.jpg'
-            }
+            imageUrl={'https://wallpaperaccess.com/full/391242.jpg'}
             nameProduct="Silent Wave"
             viewAuction={onPress}
             highestBid={3.0}
@@ -166,7 +156,7 @@ const styles = StyleSheet.create({
     color: colors.grayTitleActive,
   },
   listHotBid: {
-    marginLeft: -sizes.size_8
+    marginLeft: -sizes.size_8,
   },
   wrapHotBid: {
     flexDirection: 'row',
@@ -181,7 +171,7 @@ const styles = StyleSheet.create({
     fontWeight: fontWeights.fontWeight_700,
     lineHeight: sizes.size_32,
     color: colors.grayTitleActive,
-  }
+  },
 });
 
 export default HomeScreen;

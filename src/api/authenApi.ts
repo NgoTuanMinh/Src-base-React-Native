@@ -1,4 +1,4 @@
-import {LoginInput, LoginOutput} from '../types/authentication';
+import { LoginInput, LoginOutput } from '../types/authentication';
 import axiosClient from './axiosClient';
 
 const prefixUrl = '/authentication';
